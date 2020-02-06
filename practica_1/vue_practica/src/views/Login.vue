@@ -1,9 +1,8 @@
 <template>
-  <div class="login container">
-   <h2> Bienvenido </h2>
-    <div class="card p-5">
+  <div class="container">
+    <div class="pt-5">
       <!--incovamos componente para ordenar hacia la derecha-->
-     <div class="row">
+     <div class="row p-3">
       <div class="col-md-4">
         <LoginForm></LoginForm>
        </div>
