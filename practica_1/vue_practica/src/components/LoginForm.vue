@@ -3,39 +3,37 @@
        <header>
         <div class="logo"></div>
        </header>
-      <section>
-        <h3>Olis, benvenido</h3>
-          <h3>Iniciar sesión</h3>
-            <div class="form-group">
-              <div class="col">
-                <p>Correo electrónico</p>
+      <section class="alinearIzq">
+        <h4 class="mb-5">img</h4>
+        <h3>Login</h3>
+      <div class="form-group">
+              <div>
                   <input
-                  type="email"
-                  class="form-control mb-2"
+                    type="email"
+                    class="form-control mb-3 mt-3"
+                    placeholder="Correo electrónico"
                   >
+              </div>
+              <div>
+                  <input
+                  type="text"
+                  class="form-control mb-3 mt-3"
+                  placeholder="Nombre"
+                  />
+              </div>
+              <div>
+                  <input
+                    type="password"
+                    class="form-control"
+                    placeholder="Contraseña"
+                  />
                 </div>
-      <div class="contenEntrada">
-        <p>Nombre completo</p>
-          <input
-           type="text"
-           placeholder="Pato Yakitobi"
-          />
-      </div>
-      <div>
-        <p>Contraseña</p>
-          <input
-            type="password"
-            class="form-control"
-            placeholder="*******"
-          />
-        </div>
       </div>
     <div class="row">
       <div class="col">
-        <p>Remebber ee</p>
       </div>
       <div class="col">
-        <p>holaa</p>
+        <p>Olvidaste la contraseña?</p>
       </div>
     </div>
 
@@ -60,5 +58,8 @@ export default {
   &:active{
     background: pink;
   }
+}
+.alinearIzq{
+  text-align: start;
 }
 </style>
