@@ -1,47 +1,47 @@
 <template>
   <section>
-       <header>
-        <div class="logo"></div>
-       </header>
-      <section class="alinearIzq">
-        <h4 class="mb-5">img</h4>
-        <h3>Login</h3>
+    <header>
+      <div class="logo"></div>
+    </header>
+    <section class="alinearIzq">
+      <h4 class="mb-5">img</h4>
+      <h3>Login</h3>
       <div class="form-group">
-                  <input
-                    type="email"
-                    class="mb-3 mt-3"
-                    placeholder="Correo electrónico"
-                     v-model="user.email"
-                  />
-                  <input
-                  type="text"
-                  class="mb-3 mt-3"
-                  placeholder="Nombre"
-                  />
-                  <input
-                    type="password"
-                    class="mb-3 mt-3"
-                    placeholder="Contraseña"
-                    v-model="user.password"
-                    @keypress.enter="login"
-                  />
-                  <!--Handlebars templating, pasar cosas como js a html-->
-                  <!--{{user.password}}-->
+        <input
+          type="email"
+          class="mb-3 mt-3"
+          placeholder="Correo electrónico"
+          v-model="user.email"
+        />
+        <input
+          type="text"
+          class="mb-3 mt-3"
+          placeholder="Nombre"
+        />
+        <input
+          type="password"
+          class="mb-3 mt-3"
+          placeholder="Contraseña"
+          v-model="user.password"
+          @keypress.enter="login"
+        />
+        <!--Handlebars templating, pasar cosas como js a html-->
+        {{user.password}}
       </div>
-    <div class="row">
-      <div class="col">
+      <div class="row">
+        <div class="col">
+        </div>
+        <div class="col pb-5">
+          <small>¿Olvidaste la contraseña?</small>
+        </div>
       </div>
-      <div class="col pb-5">
-        <small>¿Olvidaste la contraseña?</small>
-      </div>
-    </div>
 
-        <button
-          class="btn-purple btn-block"
-          @click="login"
-          >Login</button>
-      </section>
+      <button
+        class="btn-purple btn-block"
+        @click="login"
+      >Login</button>
     </section>
+  </section>
 </template>
 
 <script lang="js">
@@ -86,7 +86,7 @@ export default { // febrero 06 2020
 }
 </script>
 <style lang="scss">
-.btn-purple{
+.btn-purple {
   background-color: #e54669;
   color: #202020;
   text-align: center;
@@ -97,23 +97,26 @@ export default { // febrero 06 2020
   font-size: 1rem;
   line-height: 1.5;
   border-radius: 0.25rem;
-  transition: all 0.10s ease-in-out;
-  &:hover,&:active{
+  transition: all 0.1s ease-in-out;
+  &:hover,
+  &:active {
     background: pink;
   }
 }
-.alinearIzq{
+.alinearIzq {
   text-align: start;
 }
-html{
+html {
   background-color: #202020;
 }
-input[type='text'], [type='email'], [type='password'] {
+input[type="text"],
+[type="email"],
+[type="password"] {
   background: none;
   border: none;
   border-bottom: solid 2px #474544;
   color: #c9c6c7;
-  font-size: 1.000em;
+  font-size: 1em;
   font-weight: 200;
   letter-spacing: 1px;
   margin: 0em 0 1.875em 0;
@@ -122,10 +125,11 @@ input[type='text'], [type='email'], [type='password'] {
   box-sizing: border-box;
   transition: all 0.3s;
 }
-input[type='text']:focus, [type='email']:focus, [type='password']:focus {
+input[type="text"]:focus,
+[type="email"]:focus,
+[type="password"]:focus {
   outline: none;
   padding: 0 0 0.875em 0;
   border-bottom: solid 2px #e54669;
 }
-
 </style>
