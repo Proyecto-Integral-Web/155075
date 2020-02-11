@@ -11,8 +11,8 @@
                     type="email"
                     class="mb-3 mt-3"
                     placeholder="Correo electrónico"
-                    v-model="user.email"
-                  >
+                     v-model="user.email"
+                  />
                   <input
                   type="text"
                   class="mb-3 mt-3"
@@ -22,6 +22,8 @@
                     type="password"
                     class="mb-3 mt-3"
                     placeholder="Contraseña"
+                    v-model="user.password"
+                    @keypress.enter="login"
                   />
                   <!--Handlebars templating, pasar cosas como js a html-->
                   <!--{{user.password}}-->
@@ -83,11 +85,6 @@ export default { // febrero 06 2020
   }
 }
 </script>
-
-<script lang="scss">
-// style, ubiamos el css relacionado a nuestros views y componentes
-</script>
-
 <style lang="scss">
 .btn-purple{
   background-color: #e54669;
@@ -101,8 +98,7 @@ export default { // febrero 06 2020
   line-height: 1.5;
   border-radius: 0.25rem;
   transition: all 0.10s ease-in-out;
-  &:hover,
-  &:active{
+  &:hover,&:active{
     background: pink;
   }
 }
