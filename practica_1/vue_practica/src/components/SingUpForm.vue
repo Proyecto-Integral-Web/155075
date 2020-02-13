@@ -3,10 +3,22 @@
     <header>
       <div class="logo"></div>
     </header>
-    <section class="alinearIzq">
+    <section>
       <h4 class="mb-5">img</h4>
-      <h3>Login</h3>
+      <h3>Registro</h3>
       <div class="form-group">
+        <input
+          type="text"
+          class="mb-3 mt-3"
+          placeholder="Nombre"
+          v-model="user.name"
+        />
+        <input
+          type="text"
+          class="mb-3 mt-3"
+          placeholder="Nombre de usuario"
+          v-model="user.username"
+        />
         <input
           type="email"
           class="mb-3 mt-3"
@@ -24,10 +36,10 @@
         {{user.password}}
         <div class="row">
           <div class="col">
-            <a href="singup">Registro</a>
+            <a href="home"><small>¿Tienes una cuenta?</small></a>
           </div>
           <div class="col pb-5">
-            <small>¿Olvidaste la contraseña?</small>
+
           </div>
         </div>
       </div>
@@ -42,10 +54,12 @@
 
 <script lang="js">
 export default { // febrero 06 2020
-  name: 'LoginForm',
+  name: 'SingUpForm',
   data () { // poner los datos que estan siendo ingresados en el momento
     return {
       user: {
+        name: '',
+        username: '',
         email: '',
         password: ''
       },
@@ -81,51 +95,3 @@ export default { // febrero 06 2020
   }
 }
 </script>
-<style lang="scss">
-.btn-purple {
-  background-color: #e54669;
-  color: #202020;
-  text-align: center;
-  vertical-align: middle;
-  user-select: none;
-  border: 1px solid transparent;
-  padding: 0.375rem 0.75rem;
-  font-size: 1rem;
-  line-height: 1.5;
-  border-radius: 0.25rem;
-  transition: all 0.1s ease-in-out;
-  &:hover,
-  &:active {
-    background: pink;
-  }
-}
-.alinearIzq {
-  text-align: start;
-}
-html {
-  background-color: #202020;
-}
-input[type="text"],
-[type="email"],
-[type="password"] {
-  background: none;
-  border: none;
-  border-bottom: solid 2px #474544;
-  color: #c9c6c7;
-  font-size: 1em;
-  font-weight: 200;
-  letter-spacing: 1px;
-  margin: 0em 0 1.875em 0;
-  padding: 0 0 0.875em 0;
-  width: 100%;
-  box-sizing: border-box;
-  transition: all 0.3s;
-}
-input[type="text"]:focus,
-[type="email"]:focus,
-[type="password"]:focus {
-  outline: none;
-  padding: 0 0 0.875em 0;
-  border-bottom: solid 2px #e54669;
-}
-</style>
