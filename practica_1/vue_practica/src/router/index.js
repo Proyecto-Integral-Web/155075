@@ -22,9 +22,8 @@ const routes = [
   },
   {
     path: '/singup',
-    name: 'signup', // asignamos nombre, debe ser único y original
-    component: SingUp // Declaramos componente
-  },
+    name: 'singup',
+    component: SingUp },
   {
     path: '/about',
     name: 'about',
