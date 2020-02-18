@@ -41,6 +41,7 @@
 </template>
 
 <script lang="js">
+import Auth from '@/config/auth.js'
 export default { // febrero 06 2020
   name: 'LoginForm',
   data () { // poner los datos que estan siendo ingresados en el momento
@@ -60,6 +61,7 @@ export default { // febrero 06 2020
     console.log('Estoy en created')
   },
   mounted () { // Siempre vamos a usar este pare ejecutar cualquier funcion preparatoria
+    Auth.signUp(this.user)
     console.log('Estoy en mounted')
   },
   methods: {
@@ -72,6 +74,7 @@ export default { // febrero 06 2020
       console.log('User local' + user)
       console.log(this.user.email)
       console.log(this.user.password)
+      Auth.login(this.user)
 
       setTimeout(() => {
         // Luego de iniciar sesion nos envia a la pagina about
