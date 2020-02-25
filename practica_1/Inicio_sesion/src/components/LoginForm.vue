@@ -60,25 +60,14 @@ export default { // febrero 06 2020
     console.log('Estoy en created')
   },
   mounted () { // Siempre vamos a usar este pare ejecutar cualquier funcion preparatoria
-    Auth.signUp(this.user)
+    // Auth.singUp(this.user.name)
     console.log('Estoy en mounted')
   },
   methods: {
     // metodos que queramos utilizar solo en este archivo
     login () {
-      let user = {
-        email: 'esto es local'
-      }
-      console.log('soy el login')
-      console.log('User local' + user)
-      console.log(this.user.email)
-      console.log(this.user.password)
       Auth.login(this.user)
-
-      setTimeout(() => {
-        // Luego de iniciar sesion nos envia a la pagina about
-        this.$router.push({ name: 'about' })
-      }, 1000)
+      console.log(this.user.password)
     }
   }
 }

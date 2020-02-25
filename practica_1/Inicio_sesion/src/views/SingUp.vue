@@ -19,7 +19,7 @@
 import SingUpForm from '@/components/SingUpForm'
 
 export default {
-  name: 'singup',
+  name: 'signup',
   components: {
     SingUpForm
   }

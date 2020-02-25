@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import SingUp from '../views/SingUp.vue'
+import Profile from '../views/Profile.vue'
 
 Vue.use(VueRouter)
 
@@ -11,6 +12,11 @@ const routes = [
     path: '/home',
     name: 'home',
     component: Home
+  },
+  {
+    path: '/profile',
+    name: 'profile',
+    component: Profile
   },
   {
     path: '/',

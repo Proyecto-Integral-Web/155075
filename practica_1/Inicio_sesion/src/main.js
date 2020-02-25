@@ -9,15 +9,26 @@ import Auth from './config/auth'
 // Con esto se cambia el estilo de la pagina
 import 'bootstrap/scss/bootstrap.scss'
 Vue.config.productionTip = false
-router.beforeEach((to, from, next) => {
+// Metodo de comprobacion
+router.beforeEach(async (to, from, next) => {
   if (to.meta.auth) {
-    console.log('a que hora pasas por el pan, ah y no tienes permiso')
-    if (Auth.checkUser()) {
-      next()
+    console.log('necesita permiso')
+    // traemos info del usuario actual
+    let user = await Auth.checkUser()
+    console.log(user)
+    // comrpobamos que si haya usuario
+    if (user == null) {
+      // console.log('Usuario logeado: ${user.email}')
+      next({
+        name: 'login'
+      })
       return
     }
-    router.push({ name: 'login' })
-  }next()
+    // si hay usuario
+    console.log('usuario logeado')
+    next()
+  }
+  next()
 })
 
 new Vue({
