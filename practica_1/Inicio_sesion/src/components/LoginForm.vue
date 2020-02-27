@@ -53,11 +53,8 @@ export default { // febrero 06 2020
       userPassword: ''
     }
   },
-  beforeCreate () {
-    console.log('Antes de ser creado')
-  },
   created () {
-    console.log('Estoy en created')
+    console.log('Estoy en login')
   },
   mounted () { // Siempre vamos a usar este pare ejecutar cualquier funcion preparatoria
     // Auth.singUp(this.user.name)
@@ -67,7 +64,7 @@ export default { // febrero 06 2020
     // metodos que queramos utilizar solo en este archivo
     login () {
       Auth.login(this.user)
-      console.log(this.user.password)
+      console.log('login: ' + this.user.password)
     }
   }
 }

@@ -8,7 +8,7 @@
       <div class="row">
           <div class="col">
               <p>Imagen bien bonita siono</p>
-              <img src="../assets/login-back.jpg">
+              <img src="../assets/Nuko.gif">
           </div>
         </div>
       <div class="form-group row">
@@ -18,26 +18,62 @@
           type="text"
           class="mb-3 mt-3"
           placeholder="Nombre"
+          v-model="user.name"
         />
-        </div>
-        <div class="col">
         <p>Nombre de usuario</p>
         <input
           type="text"
           class="mb-3 mt-3"
           placeholder="Nombre de usuario"
         />
-        </div>
-        <div class="col">
         <p>Email</p>
         <input
           type="email"
           class="mb-3 mt-3"
           placeholder="Correo electrónico"
+          v-model="user.email"
         />
+         <button
+          class="btn btn-danger"
+          @click="logOut"
+          >
+            Cerrar sesion
+          </button>
         </div>
         <!--Handlebars templating, pasar cosas como js a html-->
       </div>
     </section>
   </section>
 </template>
+<script lang='js'>
+import Auth from '@/config/auth.js'
+import Firebase from '@/config/_firebase.js'
+export default {
+  name: 'profileForm',
+  data () {
+    return {
+      user: {
+        email: '',
+        name: '',
+        password: '',
+        telefono: '',
+        foto: ''
+      },
+      userEmail: ''
+    }
+  },
+  mounted () {
+    let user = Firebase.auth().currentUser
+    console.log('estoy en profile ' + user.name)
+    console.log('estoy en profile ' + user.email)
+    this.user.email = user.email
+    this.user.password = user.password
+    this.user.name = user.displayName
+  },
+  methods: {
+    logOut () {
+      Auth.logOut()
+    }
+  }
+}
+</script>

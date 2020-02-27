@@ -29,7 +29,7 @@
           class="mb-3 mt-3"
           placeholder="Contraseña"
           v-model="user.password"
-          @keypress.enter="login"
+          @keypress.enter="singup"
         />
         <!--Handlebars templating, pasar cosas como js a html-->
         {{user.password}}
@@ -70,9 +70,6 @@ export default { // febrero 06 2020
       userPassword: ''
     }
   },
-  beforeCreate () {
-    console.log('Antes de ser creado')
-  },
   created () {
     console.log('Estoy en created')
   },
@@ -83,14 +80,17 @@ export default { // febrero 06 2020
     // metodos que queramos utilizar solo en este archivo
     singUp () {
       Auth.singUp(this.user)
-      console.log('soy el login')
+      console.log('soy el signup')
       console.log(this.user.email)
       console.log(this.user.password)
 
       setTimeout(() => {
         // Luego de iniciar sesion nos envia a la pagina about
-        this.$router.push({ name: 'about' })
+        this.$router.push({ name: 'profile' })
       }, 1000)
+    },
+    logOut () {
+      return Auth.logOut()
     }
   }
 }

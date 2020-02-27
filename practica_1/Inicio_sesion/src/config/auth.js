@@ -4,7 +4,7 @@ import router from '@/router'
 export default {
   logOut () {
     fireApp.auth().signOut()
-    router.push({ name: 'login' })
+    router.push({ name: 'Login' })
   },
   async checkUser () {
     let user = await fireApp.auth().currentUser
@@ -15,20 +15,19 @@ export default {
   login (data) {
     fireApp.auth().signInWithEmailAndPassword(data.email, data.password)
       .then((result) => {
-        //console.log(result)
-        router.push({ name: 'about' })
+        router.push({ name: 'profile' })
       })
       .catch((err) => {
         console.log(err)
       })
   },
   singUp (data) {
-    if (data.nombre === '' || data.email === '' || data.password === '') {
+    if (data.name === '' || data.email === '' || data.password === '') {
       return console.log('Todos los campos son obligatorios.')
     }
     fireApp.auth().createUserWithEmailAndPassword(data.email, data.password).then((result) => {
       let newUser = {
-        displayName: data.nombre,
+        displayName: result.user.name,
         email: result.user.email,
         uid: result.user.id
       }
