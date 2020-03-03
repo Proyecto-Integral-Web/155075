@@ -14,11 +14,10 @@ export default {
   },
   async login (data) {
     await fireApp.auth().signInWithEmailAndPassword(data.email, data.password).then((result) => {
-      router.push({ name: 'profile'})
+      router.push({ name: 'profile' })
     }).catch((err) => {
       return Promise.reject(err)
     })
-    
   },
   singUp (data) {
     if (data.name === '' || data.email === '' || data.password === '') {

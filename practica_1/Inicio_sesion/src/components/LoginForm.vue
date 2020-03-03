@@ -6,11 +6,19 @@
     <section class="alinearIzq">
       <h3>Login</h3>
       <div class="form-group">
+        <!--- Lo utilizamos como etiqueta de HTM, propiedades de las etiquetasL --->
+      <alerts-component
+        v-if="showError"
+        :message="errorMessage"
+        :code="errorCode"
+      >
+      </alerts-component>
         <input
           type="email"
           class="mb-3 mt-3"
           placeholder="Correo electrónico"
           v-model="user.email"
+          @keypress="showError = false"
         />
         <input
           type="password"
@@ -30,7 +38,6 @@
           </div>
         </div>
       </div>
-
       <button
         class="btn-purple btn-block"
         @click="login"
@@ -41,10 +48,18 @@
 
 <script lang="js">
 import Auth from '@/config/auth.js'
+import AlertsComponent from './helpers/Alerts.vue'
+// importamos componentes reutilizables de alertas
 export default { // febrero 06 2020
   name: 'LoginForm',
+  components: {
+    AlertsComponent // Lo registramos como componente
+  },
   data () { // poner los datos que estan siendo ingresados en el momento
     return {
+      showError: false,
+      errorMessage: '',
+      errorCode: '',
       user: {
         email: '',
         password: ''
@@ -65,8 +80,12 @@ export default { // febrero 06 2020
     login () {
       Auth.login(this.user).catch(error => {
         console.log('Esto es un error:' + error.code, error.message)
+        // alert('aAAA')
+        this.showError = true
+        this.errorMessage = error.message
+        this.errorCode = error.code
       })
-      console.log('login: ' + this.user.password)
+      // console.log('login: ' + this.user.password)
     }
   }
 }
