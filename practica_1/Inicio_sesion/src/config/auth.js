@@ -13,8 +13,12 @@ export default {
     } return null
   },
   async login (data) {
-    const datitos = await fireApp.auth().signInWithEmailAndPassword(data.email, data.password)
-    const sucede = router.push({ name: 'profile' })
+    await fireApp.auth().signInWithEmailAndPassword(data.email, data.password).then((result) => {
+      router.push({ name: 'profile'})
+    }).catch((err) => {
+      return Promise.reject(err)
+    })
+    
   },
   singUp (data) {
     if (data.name === '' || data.email === '' || data.password === '') {

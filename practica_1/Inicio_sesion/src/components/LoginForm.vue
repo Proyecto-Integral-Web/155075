@@ -63,7 +63,9 @@ export default { // febrero 06 2020
   methods: {
     // metodos que queramos utilizar solo en este archivo
     login () {
-      Auth.login(this.user)
+      Auth.login(this.user).catch(error => {
+        console.log('Esto es un error:' + error.code, error.message)
+      })
       console.log('login: ' + this.user.password)
     }
   }
