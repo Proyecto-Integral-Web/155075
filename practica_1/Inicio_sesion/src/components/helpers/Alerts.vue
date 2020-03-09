@@ -29,6 +29,9 @@ export default {
       case 'auth/wrong-password':
         this.tipo = 'alert-warning'
         break
+      case 'auth/email-already-in-use':
+        this.tipo = 'alert-danger'
+        break
 
       default:
         this.tipo = 'alert-warning'

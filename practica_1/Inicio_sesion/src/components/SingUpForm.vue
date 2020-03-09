@@ -5,6 +5,12 @@
     </header>
     <section>
       <h3>Registro</h3>
+      <alerts-component
+        v-if="showError"
+        :message="errorMessage"
+        :code="errorCode"
+      >
+      </alerts-component>
       <div class="form-group">
         <input
           type="text"
@@ -56,10 +62,17 @@
 
 <script lang="js">
 import Auth from '@/config/auth.js'
+import AlertsComponent from './helpers/Alerts.vue'
 export default { // febrero 06 2020
   name: 'SingUpForm',
+  components: {
+    AlertsComponent // Lo registramos como componente
+  },
   data () { // poner los datos que estan siendo ingresados en el momento
     return {
+      showError: false,
+      errorMessage: '',
+      errorCode: '',
       user: {
         name: '',
         username: '',
@@ -83,11 +96,19 @@ export default { // febrero 06 2020
       console.log('soy el signup')
       console.log(this.user.email)
       console.log(this.user.password)
-
+      // alertas feas ;(
+      Auth.login(this.user).catch(error => {
+        console.log('Esto es un error:' + error.code, error.message)
+        // alert('aAAA')
+        this.showError = true
+        this.errorMessage = error.message
+        this.errorCode = error.code
+      })
+      /*
       setTimeout(() => {
         // Luego de iniciar sesion nos envia a la pagina about
         this.$router.push({ name: 'profile' })
-      }, 1000)
+      }, 1000) */
     },
     logOut () {
       return Auth.logOut()
