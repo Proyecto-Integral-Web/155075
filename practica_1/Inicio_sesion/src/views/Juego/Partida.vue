@@ -1,11 +1,11 @@
 <template>
-  <section class="partida">
-    <div class="row">
-      <div class="col col-sm-6 offset-3">
+  <section>
+    <div>
+      <div class="col col-sm-6 contenido">
         <h3 class="text-center">Juego 1</h3>
       </div>
     </div>
-    <div class="row">
+    <div class="centrar-row partida contenido container">
       <div class="col col-sm-6">
         <user-arena @opcion="getOpcion"></user-arena>
       </div>
@@ -31,6 +31,17 @@ export default {
 </script>
 <style lang="scss">
 .partida {
-  background: palevioletred;
+  background:palevioletred;
+}
+.centrar-row{
+    display: flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    flex-wrap: wrap;
+}
+.contenido{
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
 }
 </style>

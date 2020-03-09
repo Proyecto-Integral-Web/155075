@@ -4,7 +4,7 @@
       <!--incovamos componente para ordenar hacia la derecha-->
       <div class="row p-3">
         <div class="col"></div>
-        <div class="col">
+        <div class="col-md-4">
           <SingUpForm></SingUpForm>
           <!--Invocamos el componente para su visualizacion-->
         </div>
@@ -25,3 +25,8 @@ export default {
   }
 }
 </script>
+<style lang="css">
+.centroForm{
+  max-width: 500px;
+}
+</style>

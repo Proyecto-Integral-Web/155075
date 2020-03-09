@@ -5,7 +5,7 @@
         <h3 class="mx-auto">User 1</h3>
       </div>
       <div class="row">
-        <div class="col-3 mx-auto">
+        <div class="mx-auto">
           <h1>✂️</h1>
         </div>
       </div>
@@ -47,7 +47,7 @@ export default {
 </script>
 <style lang="scss">
 .opciones{
-    background: grey;
+    background: rgb(212, 188, 204);
     .opcion {
         cursor: pointer;
         &:hover{

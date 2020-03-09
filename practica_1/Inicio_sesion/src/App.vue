@@ -2,7 +2,7 @@
   <div id="app">
     <div id="nav">
       <router-link to="/"> Home </router-link>
-      <router-link :to="{name: 'about'}"> About </router-link>
+     <!-- <router-link :to="{name: 'about'}"> About </router-link>-->
       <router-link to="/singup"> Singup </router-link>
          <router-link to="/juego-1/partida-1"> Juego </router-link>
     </div>
@@ -25,10 +25,10 @@
 
   a {
     font-weight: bold;
-    color: #2c3e50;
+    color: #644a56;
 
     &.router-link-exact-active {
-      color: #42b983;
+      color: #e54669;
     }
   }
 }
