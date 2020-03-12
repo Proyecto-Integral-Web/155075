@@ -28,7 +28,8 @@
 </template>
 <script lang="js">
 import UserArena from '@/components/Juego/UserArena'
-import fireApp from '@/config/_firebase.js'
+// import fireApp from '@/config/_firebase.js'
+import fireApp from '../../config/_firebase.js'
 const partida = fireApp.firestore().collection('juego-1')
 export default {
   name: 'Partida',
@@ -61,18 +62,18 @@ export default {
   },
   methods: {
     // ;etodo paragenerar nueva partida
-    crearPartida () { // Toma los datos de la base de datos de firebase
-    // escribe en la base de datos
-      fireApp.firestore().collection('juego-1').doc('partida').set({
-        'usuario-1': '',
-        'usuario-2': '',
+    crearPartida () {
+      // *Escribe en la base de datos.
+      fireApp.firestore().collection('juego-1').doc('partida-2').set({
+        'usuario_1': '',
+        'usuario_2': '',
         'ganador': ''
       })
     },
     // cargar los datos de la partida del firestore
     obtenerPArtida (partida) {
       fireApp.firestore().collection('juego-1').doc(partida).get().then((result) => {
-        console.log(result.data)
+        console.log(result.data())
       })
     },
     getOpcion (opcion) {
