@@ -11,6 +11,7 @@ import { firestorePlugin } from 'vuefire'
 // Con esto se cambia el estilo de la pagina
 import 'bootstrap/scss/bootstrap.scss'
 Vue.config.productionTip = false
+Vue.use(firestorePlugin)
 // Metodo de comprobacion
 router.beforeEach(async (to, from, next) => {
   if (to.meta.auth) {

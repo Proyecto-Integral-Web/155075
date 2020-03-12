@@ -5,8 +5,8 @@
         <h3 class="mx-auto">User 1</h3>
       </div>
       <div class="row">
-        <div class="mx-auto">
-          <h1>{{options[userOpcion]️}}</h1>
+        <div class="col-3 mx-auto">
+          <h1>{{options[userOpcion]}}</h1>
         </div>
       </div>
       <div class="row">
@@ -47,13 +47,13 @@ export default {
 }
 </script>
 <style lang="scss">
-.opciones{
-    background: rgb(212, 188, 204);
-    .opcion {
-        cursor: pointer;
-        &:hover{
-            background: darkgray;
-        }
+.opciones {
+  background: rgb(212, 188, 204);
+  .opcion {
+    cursor: pointer;
+    &:hover {
+      background: darkgray;
     }
+  }
 }
 </style>

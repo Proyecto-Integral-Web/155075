@@ -6,21 +6,22 @@
       </div>
     </div>
     <div class="centrar-row">
-        <button
+      <button
         class="btn btn-success"
         @click="crearPartida"
-        >
-          Nueva partida
-        </button>
-      </div>
+      >
+        Nueva partida
+      </button>
+    </div>
     <div class="centrar-row partida contenido container">
       <div class="col col-sm-6">
-        <user-arena 
-        @opcion="getOpcion" 
-        :userOpcion="partida.usuario_1"></user-arena>
+        <user-arena
+          @opcion="getOpcion"
+          :userOpcion="partida.usuario_1"
+        ></user-arena>
       </div>
       <div class="col col-sm-6">
-        <user-arena :userOpcion)"partida.usuario_1 != ´´ ?"></user-arena>
+        <user-arena :userOpcion="partida.usuario_1!=''?partida.usuario_2:''"></user-arena>
       </div>
     </div>
   </section>
@@ -28,7 +29,7 @@
 <script lang="js">
 import UserArena from '@/components/Juego/UserArena'
 import fireApp from '@/config/_firebase.js'
-const partida users = fireApp,firestore().collection('users')
+const partida = fireApp.firestore().collection('juego-1')
 export default {
   name: 'Partida',
   components: {
@@ -41,11 +42,12 @@ export default {
   },
   data () {
     return {
-      partida: ''
+      partida: {},
+      partidas: []
     }
   },
   firestore: {
-    partida: fireApp.firestore.collection('juego-1')
+    partidas: fireApp.firestore().collection('juego-1')
   },
   // Hwlpwe para asignar objetos o variables que necesitan ser detectados en sus cambios para ejecutar metodos
   watch: {
@@ -53,7 +55,7 @@ export default {
       deep: true, // puede ser un objeto anidado, fijarnos en el ultimojson
       immediate: true, // no esperar
       handler (value) { // lo que vas a hacer cuando detectes un ca,bio
-        this.$bind('user', partida.doc(value.no_partida))
+        this.$bind('partida', partida.doc(value.no_partida))
       }
     }
   },
@@ -74,11 +76,9 @@ export default {
       })
     },
     getOpcion (opcion) {
-      //alert(`Estoy en partida: ${opcion}`)
-      fireApp.firestore().collection('juego-1'),doc(this.$route.params.no_partida).update({
-        'usuario-1': '',
-        'usuario-2': '',
-        'ganador': ''
+      // alert(`Estoy en partida: ${opcion}`)
+      fireApp.firestore().collection('juego-1').doc(this.$route.params.no_partida).update({
+        'usuario_1': opcion
       })
     }
   }
@@ -86,17 +86,17 @@ export default {
 </script>
 <style lang="scss">
 .partida {
-  background:palevioletred;
+  background: palevioletred;
 }
-.centrar-row{
-    display: flex;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    flex-wrap: wrap;
+.centrar-row {
+  display: flex;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  flex-wrap: wrap;
 }
-.contenido{
-    width: 100%;
-    margin-right: auto;
-    margin-left: auto;
+.contenido {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
 }
 </style>
