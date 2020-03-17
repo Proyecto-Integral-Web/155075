@@ -18,7 +18,7 @@
         <user-arena
           @opcion="partida.participantes[0] === user.uid?getOpcion: '' "
           :userOpcion="partida.usuario_1"
-          :displayName="!user.displayName?partida.names[0] !== user.displayName?partida.names[0]: '' :user.displayName"
+          :displayName="!user.displayName?partida.names[0] !== user.displayName?partida.names[0]: '' :user.displayName = 'palta' "
         ></user-arena>
       </div>
       <div class="col col-sm-6">
@@ -33,7 +33,7 @@
 </template>
 <script lang="js">
 import UserArena from '@/components/Juego/UserArena'
-// import fireApp from '@/config/_firebase.js'
+// import fireApp from '@/config/_firebase.js' aiudaa
 import fireApp from '../../config/_firebase.js'
 import Auth from '@/config/auth'
 const partida = fireApp.firestore().collection('juego-1')
@@ -47,6 +47,7 @@ export default {
       // vm.obtenerPArtida(to.params)
       vm.user = Auth.getUser()
       vm.$bind('partida', partida.doc(to.params.no_partida))
+      // return this.user
     })
   },
   data () {
