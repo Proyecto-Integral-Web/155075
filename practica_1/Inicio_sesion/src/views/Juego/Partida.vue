@@ -16,12 +16,17 @@
     <div class="centrar-row partida contenido container">
       <div class="col col-sm-6">
         <user-arena
-          @opcion="getOpcion"
+          @opcion="partida.participantes[0] === user.uid?getOpcion: '' "
           :userOpcion="partida.usuario_1"
+          :displayName="!user.displayName?partida.names[0] !== user.displayName?partida.names[0]: '' :user.displayName"
         ></user-arena>
       </div>
       <div class="col col-sm-6">
-        <user-arena :userOpcion="partida.usuario_1!=''?partida.usuario_2:''"></user-arena>
+        <user-arena
+          :displayName="!partida.names[1]?'Esperading retador': partida.names[1]"
+          :userOpcion="partida.usuario_1!= '' ?partida.usuario_2: '' "
+          @opcion="partida.participantes[1] === user.uid?getOpcion: '' "
+        ></user-arena>
       </div>
     </div>
   </section>
@@ -30,6 +35,7 @@
 import UserArena from '@/components/Juego/UserArena'
 // import fireApp from '@/config/_firebase.js'
 import fireApp from '../../config/_firebase.js'
+import Auth from '@/config/auth'
 const partida = fireApp.firestore().collection('juego-1')
 export default {
   name: 'Partida',
@@ -38,13 +44,16 @@ export default {
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
-      vm.obtenerPArtida(to.params)
+      // vm.obtenerPArtida(to.params)
+      vm.user = Auth.getUser()
+      vm.$bind('partida', partida.doc(to.params.no_partida))
     })
   },
   data () {
     return {
       partida: {},
-      partidas: []
+      partidas: [],
+      user: {}
     }
   },
   firestore: {
@@ -56,6 +65,7 @@ export default {
       deep: true, // puede ser un objeto anidado, fijarnos en el ultimojson
       immediate: true, // no esperar
       handler (value) { // lo que vas a hacer cuando detectes un ca,bio
+        this.user = Auth.getUser()
         this.$bind('partida', partida.doc(value.no_partida))
       }
     }
@@ -63,11 +73,17 @@ export default {
   methods: {
     // ;etodo paragenerar nueva partida
     crearPartida () {
+      // Tomar el usuario
+      this.user = Auth.getUser()
+      // constante
+      let uid = this.user.uid
       // *Escribe en la base de datos.
-      fireApp.firestore().collection('juego-1').doc('partida-2').set({
-        'usuario_1': '',
-        'usuario_2': '',
-        'ganador': ''
+      fireApp.firestore().collection('juego-1').add({
+        participantes: [uid],
+        names: [this.user.displayName == null ? 'Usuario 1' : this.user.displayName],
+        usuario_1: '',
+        usuario_2: '',
+        ganador: ''
       })
     },
     // cargar los datos de la partida del firestore
@@ -76,11 +92,29 @@ export default {
         console.log(result.data())
       })
     },
+    retar () {
+      this.user = Auth.getUser()
+      // let uid = this.user.uid
+      // *Escribe en la base de datos.
+      this.partida.names.push(this.user.displayName == null ? 'Usuario' : this.user.displayName)
+      this.partida.participantes.push(this.user.uid)
+      fireApp.firestore().collection('juego-1').doc(this.$route.params.no_partida).update(this.partida)
+    },
     getOpcion (opcion) {
+      let participantes = this.partida.participantes
+      console.log(participantes.indexOf(this.user.uid))
+      let data = {}
+      if (participantes.indexOf(this.user.uid) === 0) {
+        data = {
+          'usuario_1': opcion
+        }
+      } else {
+        data = {
+          'usuario_2': opcion
+        }
+      }
       // alert(`Estoy en partida: ${opcion}`)
-      fireApp.firestore().collection('juego-1').doc(this.$route.params.no_partida).update({
-        'usuario_1': opcion
-      })
+      fireApp.firestore().collection('juego-1').doc(this.$route.params.no_partida).update(data)
     }
   }
 }

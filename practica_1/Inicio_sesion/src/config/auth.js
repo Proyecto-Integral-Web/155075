@@ -25,7 +25,8 @@ export default {
     }
     fireApp.auth().createUserWithEmailAndPassword(data.email, data.password).then((result) => {
       let newUser = {
-        displayName: result.user.name,
+        // displayName: result.user.name,
+        displayName: data.name,
         email: result.user.email,
         uid: result.user.id
       }
@@ -34,5 +35,8 @@ export default {
       console.table(err)
     })
     console.log(data)
+  },
+  getUser () {
+    return fireApp.auth().currentUser
   }
 }
