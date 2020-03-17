@@ -22,6 +22,13 @@
         ></user-arena>
       </div>
       <div class="col col-sm-6">
+        <button
+          v-if="!partida.names[1]"
+          class="btn btn-outline-primary"
+          @click="retar"
+        >
+          👾
+        </button>
         <user-arena
           :displayName="!partida.names[1]?'Esperading retador': partida.names[1]"
           :userOpcion="partida.usuario_1!= '' ?partida.usuario_2: '' "
