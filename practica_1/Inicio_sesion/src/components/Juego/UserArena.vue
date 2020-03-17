@@ -33,7 +33,7 @@ export default {
   data () {
     return {
       options: {
-        t: '✂️',
+        t: '☭',
         pp: '🧻',
         p: '💎'
       }
