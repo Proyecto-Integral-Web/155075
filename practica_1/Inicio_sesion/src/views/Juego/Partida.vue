@@ -6,19 +6,19 @@
       </div>
     </div>
     <div class="centrar-row">
-      <button
-        class="btn btn-success"
-        @click="crearPartida"
-      >
-        Nueva partida
-      </button>
     </div>
+    <button
+      class="btn btn-success"
+      @click="crearPartida"
+    >
+      Nueva partida
+    </button>
     <div class="centrar-row partida contenido container">
       <div class="col col-sm-6">
         <user-arena
-          @opcion="partida.participantes[0] === user.uid?getOpcion: '' "
+          @opcion="getOpcion"
           :userOpcion="partida.usuario_1"
-          :displayName="!user.displayName?partida.names[0] !== user.displayName?partida.names[0]: '' :user.displayName = 'palta' "
+          :displayName="!user.displayName?partida.names[0] !== user.displayName?partida.names[0]: ' ' :user.displayName "
         ></user-arena>
       </div>
       <div class="col col-sm-6">
@@ -31,8 +31,8 @@
         </button>
         <user-arena
           :displayName="!partida.names[1]?'Esperading retador': partida.names[1]"
-          :userOpcion="partida.usuario_1!= '' ?partida.usuario_2: '' "
-          @opcion="partida.participantes[1] === user.uid?getOpcion: '' "
+          :userOpcion="partida.usuario_1!= ' ' ?partida.usuario_2: ' ' "
+          @opcion="partida.participantes[1] === user.uid?getOpcion: ' ' "
         ></user-arena>
       </div>
     </div>
@@ -89,9 +89,9 @@ export default {
       fireApp.firestore().collection('juego-1').add({
         participantes: [uid],
         names: [this.user.displayName == null ? 'Usuario 1' : this.user.displayName],
-        usuario_1: '',
-        usuario_2: '',
-        ganador: ''
+        usuario_1: ' ',
+        usuario_2: ' ',
+        ganador: ' '
       })
     },
     // cargar los datos de la partida del firestore
