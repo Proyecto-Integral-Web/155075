@@ -18,7 +18,6 @@
         <user-arena
           @opcion="getOpcion"
           :userOpcion="partida.usuario_1"
-          :displayName="!user.displayName?partida.names[0] !== user.displayName?partida.names[0]: ' ' :user.displayName "
         ></user-arena>
       </div>
       <div class="col col-sm-6">
@@ -30,7 +29,6 @@
           👾
         </button>
         <user-arena
-          :displayName="!partida.names[1]?'Esperading retador': partida.names[1]"
           :userOpcion="partida.usuario_1!= ' ' ?partida.usuario_2: ' ' "
           @opcion="partida.participantes[1] === user.uid?getOpcion: ' ' "
         ></user-arena>
