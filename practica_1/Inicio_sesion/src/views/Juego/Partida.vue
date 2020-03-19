@@ -18,6 +18,7 @@
         <user-arena
           @opcion="getOpcion"
           :userOpcion="partida.usuario_1"
+          :displayName="!user.displayName?partida.names[0] !== user.displayName?partida.names[0]: ' ':user.displayName"
         ></user-arena>
       </div>
       <div class="col col-sm-6">
@@ -30,7 +31,8 @@
         </button>
         <user-arena
           :userOpcion="partida.usuario_1!= ' ' ?partida.usuario_2: ' ' "
-          @opcion="partida.participantes[1] === user.uid?getOpcion: ' ' "
+          @opcion="getOpcion"
+          :displayName="!partida.names[1]? 'Esperanding': partida.names[1] "
         ></user-arena>
       </div>
     </div>
@@ -51,6 +53,7 @@ export default {
     next(vm => {
       // vm.obtenerPArtida(to.params)
       vm.user = Auth.getUser()
+      vm.crearPartida()
       vm.$bind('partida', partida.doc(to.params.no_partida))
       // return this.user
     })
@@ -84,7 +87,7 @@ export default {
       // constante
       let uid = this.user.uid
       // *Escribe en la base de datos.
-      fireApp.firestore().collection('juego-1').add({
+      fireApp.firestore().collection('juego-1').doc(this.$route.params.no_partida).set({
         participantes: [uid],
         names: [this.user.displayName == null ? 'Usuario 1' : this.user.displayName],
         usuario_1: ' ',
@@ -109,14 +112,18 @@ export default {
     getOpcion (opcion) {
       let participantes = this.partida.participantes
       console.log(participantes.indexOf(this.user.uid))
+      if (this.partida.names[participantes.indexOf(this.user.uid)] !== opcion[1]) {
+        return 0
+      }
+      console.log(opcion)
       let data = {}
       if (participantes.indexOf(this.user.uid) === 0) {
         data = {
-          'usuario_1': opcion
+          'usuario_1': opcion[0]
         }
       } else {
         data = {
-          'usuario_2': opcion
+          'usuario_2': opcion[0]
         }
       }
       // alert(`Estoy en partida: ${opcion}`)
