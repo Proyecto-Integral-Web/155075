@@ -5,7 +5,7 @@ import Login from '../views/Login.vue'
 import SingUp from '../views/SingUp.vue'
 import Profile from '../views/Profile.vue'
 import Partida from '../views/Juego/Partida.vue'
-
+import Historial from '../views/Juego/Historial.vue'
 Vue.use(VueRouter)
 
 const routes = [{
@@ -17,6 +17,11 @@ const routes = [{
   path: '/profile',
   name: 'profile',
   component: Profile
+},
+{
+  path: '/historial',
+  name: 'historial',
+  component: Historial
 },
 {
   path: '/',
@@ -38,7 +43,7 @@ const routes = [{
   // this generates a separate chunk (about.[hash].js) for this route
   // which is lazy-loaded when the route is visited.
   component: () =>
-            import (/* webpackChunkName: "about" */ '../views/About.vue'),
+    import(/* webpackChunkName: "about" */ '../views/About.vue'),
   meta: {
     auth: true // controlar acceso a usuarios
   }
