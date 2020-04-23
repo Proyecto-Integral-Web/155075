@@ -1,12 +1,12 @@
 <template>
-<section>
+  <section>
     <div
-    class="alert animated tada"
-    :class="tipo"
+      class="alert animated tada"
+      :class="tipo"
     >
-        {{message}}
+      {{message}}
     </div>
-    </section>
+  </section>
 </template>
 
 <script lang="js">
@@ -29,12 +29,11 @@ export default {
       case 'auth/wrong-password':
         this.tipo = 'alert-warning'
         break
-      case 'auth/email-already-in-use':
+        /*   case 'auth/email-already-in-use':
         this.tipo = 'alert-danger'
-        break
-
+        break */
       default:
-        this.tipo = 'alert-warning'
+        this.tipo = 'alert-primary'
         break
     }
   }

@@ -2,9 +2,10 @@
   <div id="app">
     <div id="nav">
       <router-link to="/"> Home </router-link>
-     <!-- <router-link :to="{name: 'about'}"> About </router-link>-->
+      <!-- <router-link :to="{name: 'about'}"> About </router-link>-->
       <router-link to="/singup"> Singup </router-link>
-         <router-link to="/juego-1/partida-1"> Juego </router-link>
+      <router-link to="/juego-1/partida-1"> Juego </router-link>
+      <router-link to="/profile">Profile</router-link>
     </div>
     <router-view />
   </div>

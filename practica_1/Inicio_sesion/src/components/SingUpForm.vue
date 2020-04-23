@@ -97,18 +97,22 @@ export default { // febrero 06 2020
       console.log(this.user.email)
       console.log(this.user.password)
       // alertas feas ;(
-      Auth.login(this.user).catch(error => {
+      /* Auth.login(this.user).catch(error => {
         console.log('Esto es un error:' + error.code, error.message)
         // alert('aAAA')
         this.showError = true
         this.errorMessage = error.message
         this.errorCode = error.code
-      })
+      }) */
       /*
       setTimeout(() => {
         // Luego de iniciar sesion nos envia a la pagina about
         this.$router.push({ name: 'profile' })
       }, 1000) */
+      setTimeout(() => {
+        // Luego de iniciar sesion nos envia a la pagina about
+        this.$router.push({ name: 'profile' })
+      }, 1000)
     },
     logOut () {
       return Auth.logOut()
