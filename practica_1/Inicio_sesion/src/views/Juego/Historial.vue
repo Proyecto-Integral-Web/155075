@@ -1,5 +1,5 @@
 <template>
-  <p>Partidas jugadas</p>
+  <h1>Partidas jugadas</h1>
 </template>
 <script lang="js">
 // import Historial from '@/components/Juego/HistorialForm'-

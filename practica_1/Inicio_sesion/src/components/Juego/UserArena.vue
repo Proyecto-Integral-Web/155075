@@ -12,15 +12,16 @@
       <div class="row">
         <div class="col-6 mx-auto opciones">
           <div class="row">
-            <div
+            <button
               class="col col-sm-4 opcion p-3"
               v-for="(option,key) in options"
               :key="key"
               @click="select(key)"
             >
               {{option}}
-            </div>
+            </button>
           </div>
+          <button @click="aceptarEleccion">Aceptar</button>
         </div>
       </div>
     </div>
@@ -29,7 +30,7 @@
 <script lang="js">
 export default {
   name: 'UserArena',
-  props: ['userOpcion', 'displayName'],
+  props: ['userOpcion', 'displayName', 'confirmarOpcion'],
   data () {
     return {
       options: {
@@ -41,7 +42,15 @@ export default {
   },
   methods: {
     select (key) {
-      this.$emit('opcion', [key, this.displayName])
+      if (this.confirmarOpcion === true) {
+        this.$emit('opcion', [key, this.displayName])
+      }
+    },
+    aceptarEleccion () {
+      this.confirmarOpcion = true
+      /* if (this.confirmarOpcion === false) {
+        this.$emit('aceptarEleccion', [true, this.displayName])
+      } */
     }
   }
 }
@@ -53,6 +62,9 @@ export default {
     cursor: pointer;
     &:hover {
       background: darkgray;
+    }
+    &:focus {
+      background: pink;
     }
   }
 }
