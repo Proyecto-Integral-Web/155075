@@ -5,34 +5,22 @@
         <h3 class="text-center">Juego 1</h3>
       </div>
     </div>
-    <div class="centrar-row">
-    </div>
-    <button
-      class="btn btn-success"
-      @click="crearPartida"
-    >
-      Nueva partida
-    </button>
+    <div class="centrar-row"></div>
+    <button class="btn btn-success" @click="crearPartida">Nueva partida</button>
     <div class="centrar-row partida contenido container">
       <div class="col col-sm-6">
         <user-arena
           @opcion="getOpcion"
           :userOpcion="partida.usuario_1"
-          :displayName="!user.displayName?partida.names[0] !== user.displayName?partida.names[0]: ' ':user.displayName"
+          :displayName="!user.displayName ? partida.names[0] !== user.displayName ? partida.names[0]: ' ':partida.names[0]"
         ></user-arena>
       </div>
       <div class="col col-sm-6">
-        <button
-          v-if="!partida.names[1]"
-          class="btn btn-outline-primary"
-          @click="retar"
-        >
-          👾
-        </button>
+        <button v-if="!partida.names[1]" class="btn btn-outline-primary" @click="retar">👾</button>
         <user-arena
-          :userOpcion="partida.usuario_1!= ' ' ?partida.usuario_2: ' ' "
           @opcion="getOpcion"
-          :displayName="!partida.names[1]? 'Esperanding': partida.names[1] "
+          :userOpcion="partida.usuario_2"
+          :displayName="!user.displayName ? partida.names[1] !== user.displayName ? partida.names[1]: ' ':partida.names[1]"
         ></user-arena>
       </div>
     </div>
