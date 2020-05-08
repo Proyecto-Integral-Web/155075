@@ -2,12 +2,12 @@
 <html>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link>
+      <router-link class="bar" to="/">Home</router-link>
       <!-- <router-link :to="{name: 'about'}"> About </router-link>-->
-      <router-link to="/singup">Singup</router-link>
-      <router-link to="/juego-1/partida-1">Juego</router-link>
-      <router-link to="/profile">Profile</router-link>
-      <router-link to="/historial">Historial</router-link>
+      <router-link class="bar" to="/singup">Singup</router-link>
+      <router-link class="bar" to="/juego-1/partida-1">Juego</router-link>
+      <router-link class="bar" to="/profile">Profile</router-link>
+      <router-link class="bar" to="/historial">Historial</router-link>
     </div>
     <router-view />
   </div>
@@ -27,16 +27,24 @@ html {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
 }
-
+.bar {
+  background-color: rgba($color: #ea5680, $alpha: 0.6);
+  color: white;
+}
 #nav {
-  padding: 30px;
-
+  padding: 15px;
+  background-color: rgba($color: white, $alpha: 0.6);
+  border-color: #631f5c;
+  margin-bottom: 4vh;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   a {
     font-weight: bold;
-    color: #644a56;
+    color: rgba($color: white, $alpha: 0.6);
 
     &.router-link-exact-active {
-      color: #e54669;
+      background-color: rgba($color: #ffdc55, $alpha: 0.6);
+      color: #ea5680;
     }
   }
 }

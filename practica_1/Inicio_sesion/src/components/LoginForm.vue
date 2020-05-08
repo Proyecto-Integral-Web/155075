@@ -2,7 +2,7 @@
   <section>
     <header></header>
     <div class="logo">
-      <img class="imgLogo" src="../assets/Page-Files/Logo_1.png" />
+      <img class="imgLogo" src="../assets/Page-Files/Estrella.png" />
     </div>
     <section class="alinearIzq color-blanco">
       <br />
@@ -12,32 +12,42 @@
       <div class="form-group">
         <!--- Lo utilizamos como etiqueta de HTM, propiedades de las etiquetasL --->
         <alerts-component v-if="showError" :message="errorMessage" :code="errorCode"></alerts-component>
-        <input
-          type="email"
-          class="mb-3 mt-3"
-          placeholder="Correo electrónico"
-          v-model="user.email"
-          @keypress="showError = false"
-        />
-        <input
-          type="password"
-          class="mb-3 mt-3"
-          placeholder="Contraseña"
-          v-model="user.password"
-          @keypress.enter="login"
-        />
+        <div class="cont-form-input">
+          <img class="icono" src="../assets/Page-Files/mail.svg" />
+          <input
+            type="email"
+            class="mb-3 mt-3 input1"
+            placeholder="Correo electrónico"
+            v-model="user.email"
+            @keypress="showError = false"
+          />
+        </div>
+
+        <div class="cont-form-input">
+          <img class="icono" src="../assets/Page-Files/lock.svg" />
+          <input
+            type="password"
+            class="mb-3 mt-3 input1"
+            placeholder="Contraseña"
+            v-model="user.password"
+            @keypress.enter="login"
+          />
+        </div>
+
         <!--Handlebars templating, pasar cosas como js a html-->
         {{user.password}}
         <div class="row">
-          <div class="col">
-            <a href="singup">Registro</a>
-          </div>
-          <div class="col pb-5">
-            <small>¿Olvidaste la contraseña?</small>
+          <div class="row center">
+            <p class="centro">
+              <small>¿Olvidaste la contraseña?</small>
+            </p>
           </div>
         </div>
       </div>
-      <button class="btn-purple btn-block" @click="login">Login</button>
+      <div class="margin">
+        <button class="bt-login" @click="login">Login</button>
+        <a class="bt-login" href="singup">Registro</a>
+      </div>
     </section>
   </section>
 </template>
@@ -87,11 +97,61 @@ export default { // febrero 06 2020
 }
 </script>
 <style lang="scss">
+.centro {
+  margin: auto;
+  text-align: center;
+  width: 100%;
+}
+.center {
+  width: 100%;
+  margin: auto;
+  color: #e54669;
+  text-align: center;
+}
+.margin {
+  display: grid;
+  margin-bottom: 4vh;
+  grid-template-columns: 1fr;
+  grid-row-gap: 2vh;
+}
+.bt-login {
+  width: 75%;
+  background-color: #ea5680; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  border-radius: 1vh;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: auto;
+}
+.bt-login:hover {
+  background-color: white;
+  color: #ea5680;
+}
+.cont-form-input {
+  display: grid;
+  grid-template-columns: 7vh 1fr;
+}
+.form-group {
+  width: 80%;
+  margin: auto;
+}
+.icono {
+  margin: auto;
+  width: 5vh;
+}
 .txt-titulo {
   color: darkslategrey;
   font-size: 2em;
   text-align: center;
   margin-top: 13vh;
+}
+.input1 {
+  width: 60%;
+  text-align: center;
 }
 .logo {
   position: relative;
@@ -102,7 +162,10 @@ export default { // febrero 06 2020
   margin-top: 5%;
   background-color: rgba($color: white, $alpha: 1);
   border-radius: 100%;
-  bottom: -100px;
+  bottom: -90px;
+  border-style: solid;
+  border-width: 7px;
+  border-color: #631f5c;
 }
 .imgLogo {
   width: 90%;
