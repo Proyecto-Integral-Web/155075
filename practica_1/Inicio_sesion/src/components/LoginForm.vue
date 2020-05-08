@@ -1,18 +1,17 @@
 <template>
   <section>
-    <header>
-      <div class="logo"></div>
-    </header>
-    <section class="alinearIzq">
-      <h3>Login</h3>
+    <header></header>
+    <div class="logo">
+      <img class="imgLogo" src="../assets/Page-Files/Logo_1.png" />
+    </div>
+    <section class="alinearIzq color-blanco">
+      <br />
+      <h3 class="txt-titulo">
+        <small>Login</small>
+      </h3>
       <div class="form-group">
         <!--- Lo utilizamos como etiqueta de HTM, propiedades de las etiquetasL --->
-      <alerts-component
-        v-if="showError"
-        :message="errorMessage"
-        :code="errorCode"
-      >
-      </alerts-component>
+        <alerts-component v-if="showError" :message="errorMessage" :code="errorCode"></alerts-component>
         <input
           type="email"
           class="mb-3 mt-3"
@@ -38,10 +37,7 @@
           </div>
         </div>
       </div>
-      <button
-        class="btn-purple btn-block"
-        @click="login"
-      >Login</button>
+      <button class="btn-purple btn-block" @click="login">Login</button>
     </section>
   </section>
 </template>
@@ -91,6 +87,30 @@ export default { // febrero 06 2020
 }
 </script>
 <style lang="scss">
+.txt-titulo {
+  color: darkslategrey;
+  font-size: 2em;
+  text-align: center;
+  margin-top: 13vh;
+}
+.logo {
+  position: relative;
+  width: 50%;
+  height: 50%;
+  margin: 0;
+  margin-left: 25%;
+  margin-top: 5%;
+  background-color: rgba($color: white, $alpha: 1);
+  border-radius: 100%;
+  bottom: -100px;
+}
+.imgLogo {
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 10%;
+  margin-top: 5%;
+}
 .btn-purple {
   background-color: #e54669;
   color: #202020;
@@ -111,8 +131,18 @@ export default { // febrero 06 2020
 .alinearIzq {
   text-align: start;
 }
+.color-blanco {
+  background-color: rgba($color: white, $alpha: 0.6);
+  border-style: solid;
+  border-width: 7px;
+  border-radius: 5%;
+  border-color: #631f5c;
+}
 html {
-  background-color: #202020;
+  background-image: url("../assets/Page-Files/background2.jpg");
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: center;
 }
 input[type="text"],
 [type="email"],
