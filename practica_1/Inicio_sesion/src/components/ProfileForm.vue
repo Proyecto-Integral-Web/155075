@@ -1,54 +1,48 @@
 <template>
-  <section>
+  <section class="cont-usuario">
     <header>
-      <div class="logo"></div>
+      <img class="img-perfil" src="../assets/Page-Files/icono.png" />
     </header>
-    <section>
-      <h3>Perfil de usuario</h3>
-      <div class="row">
-        <div class="col">
-          <p>Imagen bien bonita siono</p>
-          <img src="../assets/Nuko.gif">
-        </div>
-      </div>
-      <div class="form-group row">
-        <div class="col">
-          <p>Nombre</p>
-          <input
-            type="text"
-            class="mb-3 mt-3"
-            placeholder="Nombre"
-            v-model="user.name"
-          />
-          <p>Nombre de usuario</p>
-          <input
-            type="text"
-            class="mb-3 mt-3"
-            placeholder="Nombre de usuario"
-          />
-          <p>Email</p>
-          <input
-            type="email"
-            class="mb-3 mt-3"
-            placeholder="Correo electrónico"
-            v-model="user.email"
-          />
-          <button
-            class="btn btn-danger"
-            @click="updateProfile"
-          >
-            actualizar
-          </button>
-          <button
-            class="btn btn-danger"
-            @click="logOut"
-          >
-            Cerrar sesion
-          </button>
-        </div>
-        <!--Handlebars templating, pasar cosas como js a html-->
+    <section class="perfil">
+      <input class="texto" v-model="usuarioActual.displayName" readonly />
+      <input class="texto" v-model="usuarioActual.email" readonly />
+      <div class="cont-bt-perfil">
+        <button class="bt-p" @click="editar">Editar</button>
+        <button class="bt-p" @click="logOut">Salir</button>
       </div>
     </section>
+    <section id="editar">
+      <div class="linea"></div>
+      <!--<form name="subida-imagenes" type="POST" enctype="multipart/formdata">
+        <input type="file" name="imagen" />
+      </form>-->
+      <h3>Editar</h3>
+      <div class="cont-input">
+        <p class="nombre">Nombre</p>
+        <input
+          type="text"
+          class="mb-3 mt-3"
+          placeholder="Nombre"
+          v-model="usuarioActual.displayName"
+        />
+      </div>
+      <div class="cont-input">
+        <p>Email</p>
+        <input
+          type="email"
+          class="mb-3 mt-3"
+          placeholder="Correo electrónico"
+          v-model="usuarioActual.email"
+        />
+      </div>
+
+      <div class="cont-bt">
+        <button class="bt" @click="updateProfile">Actualizar</button>
+      </div>
+
+      <!--Handlebars templating, pasar cosas como js a html-->
+    </section>
+    <section></section>
   </section>
 </template>
 <script lang='js'>
@@ -58,43 +52,107 @@ export default {
   name: 'profileForm',
   data () {
     return {
-      user: {
-        email: '',
-        name: '',
-        username: '',
-        password: '',
-        telefono: '',
-        foto: ''
-      },
-      userEmail: ''
+      usuarioActual: Firebase.auth().currentUser
     }
   },
   mounted () {
-    let user = Firebase.auth().currentUser
-    console.log('estoy en profile ' + user.name)
-    console.log('estoy en profile ' + user.email)
-    this.user.email = user.email
-    this.user.password = user.password
-    this.user.name = user.displayName
-    console.log(this.user.name)
+    this.userActual = Firebase.auth().currentUser
+    console.log(this.userActual)
   },
+
   methods: {
     logOut () {
       Auth.logOut()
     },
     updateProfile () {
-      let usuarioP = Firebase.auth().currentUser
-      usuarioP.updateProfile({
-        displayName: this.user.name,
-        email: this.user.email
+      this.userActual.updateProfile({
+        displayName: this.usuarioActual.displayName,
+        email: this.usuarioActual.email
       }).then((result) => {
         console.log(result)
         console.log('usuario actualizado')
-        console.log('nombre de usuario' + this.user.name)
+        console.log('nombre de usuario' + this.usuarioActual.displayName)
       }).catch(() => {
         console.log('error actualizar')
       })
-    }
   }
 }
 </script>
+<style lang="scss">
+.bt-p {
+  width: 70%;
+  background-color: red; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  border-radius: 1vh;
+  text-decoration: none;
+  font-size: 16px;
+  margin-left: 3vh;
+  margin-right: 1vh;
+}
+.cont-bt-perfil {
+  width: 100%;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 1vh;
+  margin-top: 6vh;
+  margin-left: 1vh;
+  align-items: center;
+}
+.texto {
+  border: none;
+  background-color: rgba($color: white, $alpha: 0);
+  font-size: 4vh;
+  text-align: center;
+}
+.linea {
+  height: 1px;
+  border-bottom: 2px solid #631f5c;
+  width: 90%;
+  margin: auto;
+  margin-top: 1vh;
+}
+.editar {
+  width: 100%;
+  margin: auto;
+}
+.bt {
+  width: 75%;
+  background-color: #ea5680; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  border-radius: 1vh;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: auto;
+}
+.cont-bt {
+  display: grid;
+  grid-row-gap: 3vh;
+  margin-bottom: 3vh;
+}
+.nombre {
+  margin: auto;
+}
+.cont-input {
+  width: 90%;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+.img-perfil {
+  width: 50%;
+  margin: auto;
+}
+.cont-usuario {
+  background-color: rgba($color: white, $alpha: 0.6);
+  border-style: solid;
+  border-width: 7px;
+  border-radius: 5%;
+  border-color: #631f5c;
+}
+</style>

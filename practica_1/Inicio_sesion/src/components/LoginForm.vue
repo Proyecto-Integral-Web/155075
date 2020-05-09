@@ -74,13 +74,7 @@ export default { // febrero 06 2020
       userPassword: ''
     }
   },
-  created () {
-    console.log('Estoy en login')
-  },
-  mounted () { // Siempre vamos a usar este pare ejecutar cualquier funcion preparatoria
-    // Auth.singUp(this.user.name)
-    console.log('Estoy en mounted')
-  },
+
   methods: {
     // metodos que queramos utilizar solo en este archivo
     login () {
@@ -91,7 +85,6 @@ export default { // febrero 06 2020
         this.errorMessage = error.message
         this.errorCode = error.code
       })
-      // console.log('login: ' + this.user.password)
     }
   }
 }
@@ -152,6 +145,7 @@ export default { // febrero 06 2020
 .input1 {
   width: 60%;
   text-align: center;
+  color: red;
 }
 .logo {
   position: relative;
@@ -213,7 +207,7 @@ input[type="text"],
   background: none;
   border: none;
   border-bottom: solid 2px #474544;
-  color: #c9c6c7;
+  color: black;
   font-size: 1em;
   font-weight: 200;
   letter-spacing: 1px;
