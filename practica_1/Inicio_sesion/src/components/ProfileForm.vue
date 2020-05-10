@@ -1,13 +1,14 @@
 <template>
   <section class="cont-usuario">
     <header>
+      <br />
       <img class="img-perfil" src="../assets/Page-Files/icono.png" />
     </header>
     <section class="perfil">
       <input class="texto" v-model="usuarioActual.displayName" readonly />
       <input class="texto" v-model="usuarioActual.email" readonly />
-      <div class="cont-bt-perfil">
-        <button class="bt-p" @click="editar">Editar</button>
+      <div class="cont-bt">
+        <button class="bt-p" @click="editar(false)">Editar</button>
         <button class="bt-p" @click="logOut">Salir</button>
       </div>
     </section>
@@ -38,6 +39,7 @@
 
       <div class="cont-bt">
         <button class="bt" @click="updateProfile">Actualizar</button>
+        <button class="bt" @click="editar(true)">Cancelar</button>
       </div>
 
       <!--Handlebars templating, pasar cosas como js a html-->
@@ -59,8 +61,14 @@ export default {
     this.userActual = Firebase.auth().currentUser
     console.log(this.userActual)
   },
-
   methods: {
+    editar (bandera) {
+      if (!bandera) {
+        document.getElementById('editar').style.display = 'block'
+      } else {
+        document.getElementById('editar').style.display = 'none'
+      }
+    },
     logOut () {
       Auth.logOut()
     },
@@ -75,10 +83,15 @@ export default {
       }).catch(() => {
         console.log('error actualizar')
       })
+    }
   }
 }
 </script>
 <style lang="scss">
+#editar {
+  display: none;
+  margin-top: 3vh;
+}
 .bt-p {
   width: 70%;
   background-color: red; /* Green */
@@ -90,8 +103,13 @@ export default {
   font-size: 16px;
   margin-left: 3vh;
   margin-right: 1vh;
+  margin-bottom: 3vh;
 }
-.cont-bt-perfil {
+.bt-p:hover {
+  background-color: white;
+  color: red;
+}
+.cont-bt {
   width: 100%;
   display: grid;
   align-items: center;
@@ -99,6 +117,7 @@ export default {
   grid-column-gap: 1vh;
   margin-top: 6vh;
   margin-left: 1vh;
+  margin-bottom: 3vh;
   align-items: center;
 }
 .texto {
@@ -131,10 +150,9 @@ export default {
   font-size: 16px;
   margin: auto;
 }
-.cont-bt {
-  display: grid;
-  grid-row-gap: 3vh;
-  margin-bottom: 3vh;
+.bt:hover {
+  color: #ea5680;
+  background-color: white;
 }
 .nombre {
   margin: auto;
@@ -145,6 +163,7 @@ export default {
   grid-template-columns: 1fr 2fr;
 }
 .img-perfil {
+  margin-top: 3vh;
   width: 50%;
   margin: auto;
 }
@@ -154,5 +173,6 @@ export default {
   border-width: 7px;
   border-radius: 5%;
   border-color: #631f5c;
+  margin-bottom: 3vh;
 }
 </style>

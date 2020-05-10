@@ -4,10 +4,8 @@
     <div id="nav">
       <router-link class="bar" to="/">Home</router-link>
       <!-- <router-link :to="{name: 'about'}"> About </router-link>-->
-      <router-link class="bar" to="/singup">Singup</router-link>
       <router-link class="bar" to="/juego-1/partida-1">Juego</router-link>
       <router-link class="bar" to="/profile">Profile</router-link>
-      <router-link class="bar" to="/historial">Historial</router-link>
     </div>
     <router-view />
   </div>
